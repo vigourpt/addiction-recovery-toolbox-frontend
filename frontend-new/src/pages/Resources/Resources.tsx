@@ -27,31 +27,18 @@ import {
   EmojiObjects,
 } from '@mui/icons-material';
 
-interface BaseResourceItem {
+interface ResourceItem {
   title: string;
   description: string;
   link: string;
+  contact?: string;
 }
-
-interface ResourceItemWithContact extends BaseResourceItem {
-  contact: string;
-}
-
-interface ResourceItemWithoutContact extends BaseResourceItem {
-  contact?: never;
-}
-
-type ResourceItem = ResourceItemWithContact | ResourceItemWithoutContact;
 
 interface ResourceCategory {
   category: string;
   icon: JSX.Element;
   items: ResourceItem[];
 }
-
-const hasContact = (item: ResourceItem): item is ResourceItemWithContact => {
-  return 'contact' in item && typeof item.contact === 'string';
-};
 
 const resources: ResourceCategory[] = [
   {
@@ -217,7 +204,7 @@ const Resources: React.FC = () => {
                               >
                                 {item.description}
                               </Typography>
-                              {hasContact(item) && (
+                              {typeof item.contact === 'string' && (
                                 <Typography
                                   component="div"
                                   variant="body2"
