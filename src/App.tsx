@@ -4,7 +4,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import theme from './theme';
 import Layout from './components/Layout/Layout';
-import { AuthProvider } from './contexts/AuthContext';
+import { AuthProvider } from './context/AuthContext';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import Dashboard from './pages/Dashboard/Dashboard';
@@ -12,7 +12,7 @@ import SobrietyTracker from './pages/SobrietyTracker/SobrietyTracker';
 import SavingsCalculator from './pages/SavingsCalculator/SavingsCalculator';
 import HealthProgress from './pages/HealthProgress/HealthProgress';
 import Resources from './pages/Resources/Resources';
-import { useAuth } from './contexts/AuthContext';
+import { useAuth } from './context/AuthContext';
 
 // Protected Route wrapper component
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
