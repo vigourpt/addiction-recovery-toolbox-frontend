@@ -30,7 +30,7 @@ import {
 interface ResourceItem {
   title: string;
   description: string;
-  contact?: string;
+  contact?: string | undefined;
   link: string;
 }
 
