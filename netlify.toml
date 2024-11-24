@@ -1,5 +1,5 @@
 [build]
-  command = "npm run build"
+  command = "npm ci && npm run build"
   publish = "build"
 
 [[redirects]]
@@ -9,3 +9,4 @@
 
 [context.production.environment]
   REACT_APP_API_URL = "https://addiction-recovery-toolbox.onrender.com/api"
+  NODE_VERSION = "18.20.5"
