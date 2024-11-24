@@ -146,6 +146,10 @@ const resources: ResourceCategory[] = [
   },
 ];
 
+const hasValidContact = (item: ResourceItem): boolean => {
+  return typeof item.contact === 'string' && item.contact.length > 0;
+};
+
 const Resources: React.FC = () => {
   const theme = useTheme();
 
@@ -204,7 +208,7 @@ const Resources: React.FC = () => {
                               >
                                 {item.description}
                               </Typography>
-                              {typeof item.contact === 'string' && (
+                              {hasValidContact(item) && (
                                 <Typography
                                   component="div"
                                   variant="body2"

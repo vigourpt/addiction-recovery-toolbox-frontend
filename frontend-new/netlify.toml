@@ -1,6 +1,10 @@
 [build]
-  command = "npm run build"
+  command = "npm ci && CI=false npm run build"
   publish = "build"
+
+[build.environment]
+  REACT_APP_API_URL = "https://addiction-recovery-toolbox.onrender.com/api"
+  REACT_APP_NAME = "Addiction Recovery Toolbox"
 
 [[redirects]]
   from = "/*"
