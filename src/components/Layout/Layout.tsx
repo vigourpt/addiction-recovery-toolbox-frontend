@@ -21,10 +21,8 @@ import {
 import {
   Menu as MenuIcon,
   Dashboard as DashboardIcon,
-  Timeline,
   CalendarToday,
   AttachMoney,
-  Favorite,
   Book,
   Settings,
   ExitToApp,

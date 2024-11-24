@@ -58,7 +58,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     };
 
     initAuth();
-  }, []);
+  }, []);  // api is stable and doesn't need to be in deps
 
   const login = async (email: string, password: string) => {
     try {

@@ -4,22 +4,17 @@ import {
   Grid,
   Paper,
   Typography,
-  Button,
-  Card,
-  CardContent,
-  LinearProgress,
-  useTheme,
+  useTheme
 } from '@mui/material';
 import {
   Timeline,
   CalendarToday,
   AttachMoney,
   Favorite,
-  TrendingUp,
   EmojiEvents,
 } from '@mui/icons-material';
 import { useAuth } from '../../context/AuthContext';
-import { differenceInDays, format } from 'date-fns';
+import { differenceInDays } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
 
 // Quick Action Card Component
@@ -29,7 +24,7 @@ const QuickActionCard: React.FC<{
   icon: React.ReactNode;
   onClick: () => void;
 }> = ({ title, description, icon, onClick }) => (
-  <Card
+  <Box
     sx={{
       height: '100%',
       display: 'flex',
@@ -42,18 +37,16 @@ const QuickActionCard: React.FC<{
     }}
     onClick={onClick}
   >
-    <CardContent>
-      <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-        {icon}
-        <Typography variant="h6" sx={{ ml: 1 }}>
-          {title}
-        </Typography>
-      </Box>
-      <Typography variant="body2" color="text.secondary">
-        {description}
+    <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+      {icon}
+      <Typography variant="h6" sx={{ ml: 1 }}>
+        {title}
       </Typography>
-    </CardContent>
-  </Card>
+    </Box>
+    <Typography variant="body2" color="text.secondary">
+      {description}
+    </Typography>
+  </Box>
 );
 
 // Progress Card Component
@@ -66,8 +59,8 @@ const ProgressCard: React.FC<{
   const progress = (value / total) * 100;
   
   return (
-    <Card sx={{ height: '100%' }}>
-      <CardContent>
+    <Box sx={{ height: '100%' }}>
+      <Box sx={{ p: 3 }}>
         <Typography variant="h6" gutterBottom>
           {title}
         </Typography>
@@ -79,16 +72,14 @@ const ProgressCard: React.FC<{
             </Typography>
           </Typography>
         </Box>
-        <LinearProgress
-          variant="determinate"
-          value={progress}
-          sx={{ height: 8, borderRadius: 4 }}
-        />
+        <Box sx={{ height: 8, borderRadius: 4, backgroundColor: 'grey' }}>
+          <Box sx={{ height: 8, borderRadius: 4, backgroundColor: 'primary.main', width: `${progress}%` }} />
+        </Box>
         <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
           {progress.toFixed(0)}% of {total} {unit} goal
         </Typography>
-      </CardContent>
-    </Card>
+      </Box>
+    </Box>
   );
 };
 
@@ -206,25 +197,23 @@ const Dashboard: React.FC = () => {
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <Card>
-            <CardContent>
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <EmojiEvents
-                  sx={{ fontSize: 40, color: theme.palette.warning.main, mr: 2 }}
-                />
-                <Box>
-                  <Typography variant="h6">
-                    {sobrietyDays >= 7
-                      ? '1 Week Milestone Achieved!'
-                      : 'Next Milestone: 1 Week'}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    Keep going! Every day counts towards your recovery.
-                  </Typography>
-                </Box>
+          <Box>
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <EmojiEvents
+                sx={{ fontSize: 40, color: theme.palette.warning.main, mr: 2 }}
+              />
+              <Box>
+                <Typography variant="h6">
+                  {sobrietyDays >= 7
+                    ? '1 Week Milestone Achieved!'
+                    : 'Next Milestone: 1 Week'}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Keep going! Every day counts towards your recovery.
+                </Typography>
               </Box>
-            </CardContent>
-          </Card>
+            </Box>
+          </Box>
         </Grid>
       </Grid>
     </Box>

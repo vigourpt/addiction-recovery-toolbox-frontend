@@ -6,11 +6,8 @@ import {
   Grid,
   Card,
   CardContent,
-  CardActions,
-  Button,
   List,
   ListItem,
-  ListItemIcon,
   ListItemText,
   Divider,
   useTheme,
@@ -19,15 +16,26 @@ import {
 import {
   LocalHospital,
   Group,
-  Book,
   Phone,
-  Web,
   Psychology,
   School,
   EmojiObjects,
 } from '@mui/icons-material';
 
-const resources = [
+interface ResourceItem {
+  title: string;
+  description: string;
+  link: string;
+  contact?: string;
+}
+
+interface ResourceCategory {
+  category: string;
+  icon: JSX.Element;
+  items: ResourceItem[];
+}
+
+const resources: ResourceCategory[] = [
   {
     category: 'Emergency Help',
     icon: <Phone color="error" />,
