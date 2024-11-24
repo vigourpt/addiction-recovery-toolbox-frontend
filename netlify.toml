@@ -8,7 +8,8 @@
   status = 200
 
 [context.production.environment]
-  REACT_APP_API_URL = "https://addiction-recovery-toolbox.onrender.com/api"
+  # Update with the correct API URL - this needs to be verified
+  REACT_APP_API_URL = "https://addiction-recovery-toolbox-api.onrender.com"
   NODE_VERSION = "18.19.1"
   REACT_APP_FIREBASE_API_KEY = "AIzaSyCLMGE_sn0QS6o7SpHySrb6ZNQJMoPoQSg"
   REACT_APP_FIREBASE_AUTH_DOMAIN = "addiction-recovery-toolbox.firebaseapp.com"

@@ -36,7 +36,42 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const api = axios.create({
     baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5000/api',
+    timeout: 10000, // 10 seconds timeout
+    headers: {
+      'Content-Type': 'application/json',
+    },
   });
+
+  // Add request interceptor for debugging
+  api.interceptors.request.use(
+    (config) => {
+      console.log(`Making ${config.method?.toUpperCase()} request to ${config.baseURL}${config.url}`);
+      return config;
+    },
+    (error) => {
+      console.error('Request error:', error);
+      return Promise.reject(error);
+    }
+  );
+
+  // Add response interceptor for debugging
+  api.interceptors.response.use(
+    (response) => {
+      return response;
+    },
+    (error) => {
+      console.error('Response error:', {
+        status: error.response?.status,
+        data: error.response?.data,
+        config: {
+          url: error.config?.url,
+          method: error.config?.method,
+          baseURL: error.config?.baseURL,
+        },
+      });
+      return Promise.reject(error);
+    }
+  );
 
   useEffect(() => {
     const initAuth = async () => {
@@ -48,7 +83,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           });
           setUser(response.data);
           setToken(storedToken);
-        } catch (error) {
+        } catch (error: any) {
+          console.error('Auth initialization error:', error.response?.data || error.message);
+          // If the token is invalid or expired, clear it
           localStorage.removeItem('token');
           setToken(null);
           setUser(null);
