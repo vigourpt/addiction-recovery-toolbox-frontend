@@ -146,20 +146,6 @@ const resources: ResourceCategory[] = [
   },
 ];
 
-const renderContact = (item: ResourceItem) => {
-  if (!item.contact) return null;
-  return (
-    <Typography
-      component="div"
-      variant="body2"
-      color="primary"
-      sx={{ mt: 0.5 }}
-    >
-      Contact: {item.contact}
-    </Typography>
-  );
-};
-
 const Resources: React.FC = () => {
   const theme = useTheme();
 
@@ -218,7 +204,16 @@ const Resources: React.FC = () => {
                               >
                                 {item.description}
                               </Typography>
-                              {renderContact(item)}
+                              {item.contact !== undefined && (
+                                <Typography
+                                  component="div"
+                                  variant="body2"
+                                  color="primary"
+                                  sx={{ mt: 0.5 }}
+                                >
+                                  Contact: {item.contact}
+                                </Typography>
+                              )}
                             </>
                           }
                         />
