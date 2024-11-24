@@ -88,6 +88,15 @@ const Dashboard: React.FC = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
 
+  // If user is not loaded yet, show loading state
+  if (!user) {
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <Typography>Loading...</Typography>
+      </Box>
+    );
+  }
+
   // Calculate sobriety days (if sobrietyDate is set)
   const sobrietyDays = user?.sobrietyDate
     ? differenceInDays(new Date(), new Date(user.sobrietyDate))

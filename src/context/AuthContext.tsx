@@ -74,13 +74,27 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const register = async (name: string, email: string, password: string) => {
     try {
-      const response = await api.post('/auth/register', { name, email, password });
+      const response = await api.post('/auth/register', {
+        name,
+        email,
+        password,
+      });
+      
+      if (!response.data || !response.data.token) {
+        console.error('Invalid response from server:', response.data);
+        throw new Error('Registration failed - invalid server response');
+      }
+      
       const { user, token } = response.data;
       setUser(user);
       setToken(token);
       localStorage.setItem('token', token);
-    } catch (error) {
-      throw new Error('Registration failed');
+    } catch (error: any) {
+      console.error('Registration error:', error.response?.data || error.message);
+      if (error.response?.data?.message) {
+        throw new Error(error.response.data.message);
+      }
+      throw new Error('Registration failed - please try again');
     }
   };
 

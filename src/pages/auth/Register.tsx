@@ -59,9 +59,12 @@ const Register: React.FC = () => {
       setError('');
       setLoading(true);
       await register(formData.name, formData.email, formData.password);
-      navigate('/dashboard');
-    } catch (err) {
-      setError('Failed to create an account');
+      
+      // After successful registration, navigate to dashboard
+      navigate('/dashboard', { replace: true });
+    } catch (err: any) {
+      console.error('Registration error:', err);
+      setError(err.message || 'Failed to create an account');
     } finally {
       setLoading(false);
     }
