@@ -38,7 +38,7 @@ import {
   CalendarMonth,
   Note,
 } from '@mui/icons-material';
-import { useAuth } from '../../contexts/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 
 interface ChecklistItem {
   id: string;

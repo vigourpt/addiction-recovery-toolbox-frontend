@@ -28,7 +28,7 @@ import {
   differenceInDays,
   format,
 } from 'date-fns';
-import { useAuth } from '../../contexts/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 
 const milestones = [
   { days: 1, title: '24 Hours', description: 'The first day is complete!' },
